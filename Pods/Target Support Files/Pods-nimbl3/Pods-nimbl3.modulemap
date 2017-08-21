@@ -1,0 +1,6 @@
+framework module Pods_nimbl3 {
+  umbrella header "Pods-nimbl3-umbrella.h"
+
+  export *
+  module * { export * }
+}
