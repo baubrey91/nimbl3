@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SurveysViewController: UIViewController {
     
     var surveys = [Survey]() {
         didSet {
@@ -24,7 +24,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         pageControl.transform = pageControl.transform.rotated(by: .pi/2)
-
         
         Client.sharedInstance.getSurveys(completionHandler: {
             surveys in DispatchQueue.main.async {
@@ -42,8 +41,8 @@ class ViewController: UIViewController {
             } else {
                 dot.backgroundColor = UIColor.clear
                 dot.layer.cornerRadius = dot.frame.size.height / 2
-                dot.layer.borderColor = 
-                dot.layer.borderWidth = 1
+                dot.layer.borderColor = UIColor.white.cgColor
+                dot.layer.borderWidth = 1.0
             }
         }
     }
@@ -51,7 +50,7 @@ class ViewController: UIViewController {
 
 //MARK:- collection view
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SurveysViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.view.frame.width

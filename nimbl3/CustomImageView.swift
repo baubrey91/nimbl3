@@ -9,41 +9,59 @@
 
 import Foundation
 import UIKit
+import AFNetworking
 
 //Image Cache
 let imageCache = NSCache<AnyObject, AnyObject>()
 
 class CustomImageView: UIImageView {
     
-    var imageUrlString: String?
+    var lowImage: String?
+    var highImage: String?
+    
     func loadImage(urlString: String) {
+        lowImage = urlString
+        highImage = urlString+"l"
         
-        imageUrlString = urlString
-        let url = URL(string: urlString)
+        let smallImageRequest = URLRequest(url: URL(string: urlString)!)
+        let largeImageRequest = URLRequest(url: URL(string: urlString+"l")!)
         
         image = nil
         
         //if image is in cache load it otherwise download it
-        if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
+        if let imageFromCache = imageCache.object(forKey: highImage as AnyObject) as? UIImage {
             self.image = imageFromCache
+            return
         }
         
-        URLSession.shared.dataTask(with: url!, completionHandler: {
-            (data, response, error) in
-            if error != nil {
-                print(error ?? "Unkown")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if let imageToCache = UIImage(data: data!) {
-                    //if this is correct image for cell set it otherwise only cache it
-                    if self.imageUrlString == urlString {
-                        self.image = imageToCache
-                    }
-                    imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
+        self.setImageWith(
+            smallImageRequest,
+            placeholderImage: nil,
+            success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
+                if self.lowImage == urlString {
+                    self.image = smallImage
+                    UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                        self.alpha = 1.0
+                    }, completion: { (sucess) -> Void in
+                        
+                        self.setImageWith(
+                            largeImageRequest,
+                            placeholderImage: smallImage,
+                            success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
+                                //if this is correct image for cell set it otherwise only cache it
+                                if self.highImage == urlString+"l" {
+                                    self.image = largeImage
+                                }
+                                imageCache.setObject(largeImage, forKey: urlString+"l" as AnyObject)
+                        },
+                            failure: { (request, response, error) -> Void in
+                                
+                        })
+                    })
                 }
-            }
-        }).resume()
+        },
+            failure: { (request, response, error) -> Void in
+        })
     }
 }
+
