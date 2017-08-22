@@ -10,27 +10,52 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var surveys = [Survey]()
+    var surveys = [Survey]() {
+        didSet {
+            collectionView.reloadData()
+            pageControl.numberOfPages = surveys.count
+        }
+    }
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pageControl.transform = pageControl.transform.rotated(by: .pi/2)
+
+        
         Client.sharedInstance.getSurveys(completionHandler: {
             surveys in DispatchQueue.main.async {
                 self.surveys = surveys as! [Survey]
-                self.collectionView.reloadData()
+                //self.collectionView.reloadData()
             }
         })
     }
+    
+    func updatePageControl() {
+        for (index, dot) in pageControl.subviews.enumerated() {
+            if index == pageControl.currentPage {
+                dot.backgroundColor = .white
+                dot.layer.cornerRadius = dot.frame.size.height / 2;
+            } else {
+                dot.backgroundColor = UIColor.clear
+                dot.layer.cornerRadius = dot.frame.size.height / 2
+                dot.layer.borderColor = 
+                dot.layer.borderWidth = 1
+            }
+        }
+    }
 }
+
+//MARK:- collection view
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = Int(self.view.frame.width)
-        let height = Int(self.view.frame.height)
+        let width = self.view.frame.width
+        let height = self.view.frame.height
         return CGSize(width: width, height: height)
     }
     
@@ -42,6 +67,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "SurveyCollectionViewCell", for: indexPath) as! SurveyCollectionViewCell
         cell.survey = surveys[indexPath.row]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.pageControl.currentPage = indexPath.row
+        updatePageControl()
     }
 }
 
