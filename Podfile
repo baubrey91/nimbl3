@@ -6,5 +6,7 @@ target 'nimbl3' do
   use_frameworks!
 
   # Pods for nimbl3
+    pod 'AlamofireImage', '~> 3.1'
+    pod 'Alamofire', '~> 4.4'
 
 end
