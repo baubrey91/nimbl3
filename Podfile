@@ -7,5 +7,6 @@ target 'nimbl3' do
 
   # Pods for nimbl3
     pod 'AFNetworking', '~> 3.0'
+    pod 'SVProgressHUD'
 
 end

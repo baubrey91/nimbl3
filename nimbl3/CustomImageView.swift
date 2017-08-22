@@ -35,7 +35,6 @@ class CustomImageView: UIImageView {
             self.image = imageFromCache
             return
         }
-        
         self.setImageWith(
             smallImageRequest,
             placeholderImage: nil,
@@ -57,7 +56,6 @@ class CustomImageView: UIImageView {
                                 imageCache.setObject(largeImage, forKey: urlString+"l" as AnyObject)
                         },
                             failure: { (request, response, error) -> Void in
-                                
                         })
                     })
                 }

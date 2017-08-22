@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SurveysViewController: UIViewController {
     
@@ -25,9 +26,11 @@ class SurveysViewController: UIViewController {
         
         pageControl.transform = pageControl.transform.rotated(by: .pi/2)
         
+        SVProgressHUD.show()
         Client.sharedInstance.getSurveys(page: 1, perPage: 20, completionHandler: {
             surveys in DispatchQueue.main.async {
                 self.surveys = surveys as! [Survey]
+                SVProgressHUD.dismiss()
             }
         })
     }
