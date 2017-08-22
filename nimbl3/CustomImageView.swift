@@ -20,13 +20,15 @@ class CustomImageView: UIImageView {
     var highImage: String?
     
     func loadImage(urlString: String) {
+        image = nil
+
+        guard urlString != "" else { return }
+        
         lowImage = urlString
         highImage = urlString+"l"
         
         let smallImageRequest = URLRequest(url: URL(string: urlString)!)
         let largeImageRequest = URLRequest(url: URL(string: urlString+"l")!)
-        
-        image = nil
         
         //if image is in cache load it otherwise download it
         if let imageFromCache = imageCache.object(forKey: highImage as AnyObject) as? UIImage {

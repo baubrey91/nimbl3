@@ -75,6 +75,7 @@
                                                 </button>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="backgroundImage" destination="lvi-XS-dlU" id="OAe-rj-B8p"/>
                                             <outlet property="descriptionLabel" destination="dEH-TR-3b1" id="miU-vr-ISz"/>
@@ -94,7 +95,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="SURVEYS" id="C6a-fO-O4G"/>
+                    <navigationItem key="navigationItem" title="SURVEYS" id="C6a-fO-O4G">
+                        <barButtonItem key="leftBarButtonItem" image="refresh" id="GTH-Fg-vNv"/>
+                        <barButtonItem key="rightBarButtonItem" image="hamburger" id="mNR-Bp-cGX"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="qHJ-rZ-zSe" id="rfj-fY-nq3"/>
                         <outlet property="pageControl" destination="Hxd-bo-yZb" id="n8N-UP-SFG"/>
@@ -139,9 +143,11 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dc1-Jr-sye" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yF8-z8-z9V">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="blackTranslucent" id="yF8-z8-z9V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -171,4 +177,8 @@
             <point key="canvasLocation" x="2216.8000000000002" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="hamburger" width="25" height="25"/>
+        <image name="refresh" width="25" height="25"/>
+    </resources>
 </document>

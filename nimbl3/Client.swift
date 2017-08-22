@@ -15,9 +15,9 @@ class Client {
     
     static let sharedInstance = Client()
     
-    func getSurveys(completionHandler: @escaping ((_ products: AnyObject) -> Void)) {
+    func getSurveys(page: Int, perPage: Int, completionHandler: @escaping ((_ products: AnyObject) -> Void)) {
         
-        var request = URLRequest(url: URL(string: "\(baseURL)surveys.json?page=1&per_page=10")!)
+        var request = URLRequest(url: URL(string: "\(baseURL)surveys.json?page=\(page)&per_page=\(perPage)")!)
         request.httpMethod = "GET"
         request.setValue("Bearer \(access_token)", forHTTPHeaderField: "Authorization")
         

@@ -25,10 +25,9 @@ class SurveysViewController: UIViewController {
         
         pageControl.transform = pageControl.transform.rotated(by: .pi/2)
         
-        Client.sharedInstance.getSurveys(completionHandler: {
+        Client.sharedInstance.getSurveys(page: 1, perPage: 20, completionHandler: {
             surveys in DispatchQueue.main.async {
                 self.surveys = surveys as! [Survey]
-                //self.collectionView.reloadData()
             }
         })
     }
