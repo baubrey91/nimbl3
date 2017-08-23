@@ -6,13 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--SURVEYS-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SurveysViewController" customModule="nimbl3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="SurveysViewController" customModule="nimbl3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -26,41 +27,41 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="c3C-Dj-7Jw">
-                                    <size key="itemSize" width="375" height="606"/>
+                                    <size key="itemSize" width="375" height="668"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SurveyCollectionViewCell" id="1h1-S9-gkk" customClass="SurveyCollectionViewCell" customModule="nimbl3" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="606"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="606"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lvi-XS-dlU" customClass="CustomImageView" customModule="nimbl3" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="606"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jU-FC-yUc">
-                                                    <rect key="frame" x="28" y="144" width="327" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jU-FC-yUc">
+                                                    <rect key="frame" x="169.5" y="108" width="36.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEH-TR-3b1">
-                                                    <rect key="frame" x="28" y="186" width="327" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEH-TR-3b1">
+                                                    <rect key="frame" x="143.5" y="179" width="88" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6b7-Y5-RfF">
-                                                    <rect key="frame" x="107" y="508" width="160" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6b7-Y5-RfF">
+                                                    <rect key="frame" x="100" y="555" width="175" height="30"/>
                                                     <color key="backgroundColor" red="0.77114762930000003" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="175" id="xfw-OD-crU"/>
+                                                    </constraints>
                                                     <state key="normal" title="Take the survey">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -76,6 +77,14 @@
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="6b7-Y5-RfF" firstAttribute="centerX" secondItem="1h1-S9-gkk" secondAttribute="centerX" id="WHc-g3-8yT"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="6b7-Y5-RfF" secondAttribute="bottom" constant="75" id="XRh-A4-b55"/>
+                                            <constraint firstItem="dEH-TR-3b1" firstAttribute="centerX" secondItem="1h1-S9-gkk" secondAttribute="centerX" id="Ytw-cf-oUg"/>
+                                            <constraint firstItem="7jU-FC-yUc" firstAttribute="top" secondItem="1h1-S9-gkk" secondAttribute="topMargin" constant="100" id="vL2-kq-JVx"/>
+                                            <constraint firstItem="7jU-FC-yUc" firstAttribute="centerX" secondItem="1h1-S9-gkk" secondAttribute="centerX" id="wf0-Q2-AgU"/>
+                                            <constraint firstItem="dEH-TR-3b1" firstAttribute="top" secondItem="7jU-FC-yUc" secondAttribute="bottom" constant="50" id="xHG-jC-TsL"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="backgroundImage" destination="lvi-XS-dlU" id="OAe-rj-B8p"/>
                                             <outlet property="descriptionLabel" destination="dEH-TR-3b1" id="miU-vr-ISz"/>
@@ -96,7 +105,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="SURVEYS" id="C6a-fO-O4G">
-                        <barButtonItem key="leftBarButtonItem" image="refresh" id="GTH-Fg-vNv"/>
+                        <barButtonItem key="leftBarButtonItem" image="refresh" id="GTH-Fg-vNv">
+                            <connections>
+                                <action selector="onRefreshButton:" destination="BYZ-38-t0r" id="j0B-oS-uKG"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="hamburger" id="mNR-Bp-cGX"/>
                     </navigationItem>
                     <connections>
@@ -143,7 +156,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dc1-Jr-sye" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="blackTranslucent" id="yF8-z8-z9V">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackTranslucent" id="yF8-z8-z9V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

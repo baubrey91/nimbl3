@@ -23,7 +23,6 @@ class Client {
         
         let session = URLSession.shared
         session.dataTask(with: request) { data, response, error in
-            
             do {
                 let JSON = try JSONSerialization.jsonObject(with: data!, options: []) as! [NSDictionary]
                 completionHandler(Survey.surveys(array: JSON) as AnyObject)
@@ -31,6 +30,6 @@ class Client {
             catch {
                 print("json error: \(error)")
             }
-            }.resume()
+        }.resume()
     }
 }

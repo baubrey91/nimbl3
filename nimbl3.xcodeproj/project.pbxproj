@@ -75,13 +75,13 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		CA8994541F4BA9E40022D573 /* ViewController */ = {
+		CA8994541F4BA9E40022D573 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				CA32F65A1F4C9388009088EC /* SurveyViewController.swift */,
 				CAA6BC5B1F4B4E8600696EBB /* SurveysViewController.swift */,
 			);
-			name = ViewController;
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		CA8994551F4BA9FB0022D573 /* View */ = {
@@ -93,12 +93,12 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		CA8994561F4BB15D0022D573 /* API */ = {
+		CA8994561F4BB15D0022D573 /* Store */ = {
 			isa = PBXGroup;
 			children = (
 				CA8994571F4BB16F0022D573 /* Client.swift */,
 			);
-			name = API;
+			name = Store;
 			sourceTree = "<group>";
 		};
 		CAA6BC4D1F4B4E8600696EBB = {
@@ -122,10 +122,10 @@
 		CAA6BC581F4B4E8600696EBB /* nimbl3 */ = {
 			isa = PBXGroup;
 			children = (
-				CA8994561F4BB15D0022D573 /* API */,
-				CA8994551F4BA9FB0022D573 /* View */,
-				CA8994541F4BA9E40022D573 /* ViewController */,
 				CA8994531F4BA9DE0022D573 /* Model */,
+				CA8994551F4BA9FB0022D573 /* View */,
+				CA8994541F4BA9E40022D573 /* Controller */,
+				CA8994561F4BB15D0022D573 /* Store */,
 				CAA6BC591F4B4E8600696EBB /* AppDelegate.swift */,
 				CAA6BC5D1F4B4E8600696EBB /* Main.storyboard */,
 				CAA6BC601F4B4E8600696EBB /* Assets.xcassets */,

@@ -21,7 +21,6 @@ class SurveyCollectionViewCell: UICollectionViewCell {
             if let imgURLString = survey?.imageURL {
                 backgroundImage.loadImage(urlString: imgURLString)
             }
-            
         }
     }
 }

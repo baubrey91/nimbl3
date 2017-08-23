@@ -24,8 +24,12 @@ class SurveysViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(getSurveys), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         pageControl.transform = pageControl.transform.rotated(by: .pi/2)
-        
+        getSurveys()
+    }
+    
+    func getSurveys() {
         SVProgressHUD.show()
         Client.sharedInstance.getSurveys(page: 1, perPage: 20, completionHandler: {
             surveys in DispatchQueue.main.async {
@@ -35,22 +39,12 @@ class SurveysViewController: UIViewController {
         })
     }
     
-    func updatePageControl() {
-        for (index, dot) in pageControl.subviews.enumerated() {
-            if index == pageControl.currentPage {
-                dot.backgroundColor = .white
-                dot.layer.cornerRadius = dot.frame.size.height / 2;
-            } else {
-                dot.backgroundColor = UIColor.clear
-                dot.layer.cornerRadius = dot.frame.size.height / 2
-                dot.layer.borderColor = UIColor.white.cgColor
-                dot.layer.borderWidth = 1.0
-            }
-        }
+    @IBAction func onRefreshButton(_ sender: Any) {
+        getSurveys()
     }
 }
 
-//MARK:- collection view
+//MARK:- Collection View
 
 extension SurveysViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -73,6 +67,20 @@ extension SurveysViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.pageControl.currentPage = indexPath.row
         updatePageControl()
+    }
+    
+    private func updatePageControl() {
+        for (index, dot) in pageControl.subviews.enumerated() {
+            if index == pageControl.currentPage {
+                dot.backgroundColor = .white
+                dot.layer.cornerRadius = dot.frame.size.height / 2;
+            } else {
+                dot.backgroundColor = UIColor.clear
+                dot.layer.cornerRadius = dot.frame.size.height / 2
+                dot.layer.borderColor = UIColor.white.cgColor
+                dot.layer.borderWidth = 1.0
+            }
+        }
     }
 }
 
