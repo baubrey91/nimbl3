@@ -6,7 +6,6 @@
 //  Copyright © 2017 BrandonAubrey. All rights reserved.
 //
 
-
 import Foundation
 import UIKit
 import AFNetworking
@@ -20,9 +19,6 @@ class CustomImageView: UIImageView {
         image = nil
         
         guard urlString != "" else { return }
-        
-        lowImage = urlString
-        highImage = urlString+"l"
         
         let smallImageRequest = URLRequest(url: URL(string: urlString)!)
         let largeImageRequest = URLRequest(url: URL(string: urlString+"l")!)
