@@ -8,8 +8,11 @@
 
 import UIKit
 import SVProgressHUD
+import ReachabilitySwift
 
 class SurveysViewController: UIViewController {
+    
+    let reachability = Reachability()!
     
     var surveys = [Survey]() {
         didSet {
@@ -32,13 +35,22 @@ class SurveysViewController: UIViewController {
     }
     
     func getSurveys() {
-        SVProgressHUD.show()
-        Client.sharedInstance.getSurveys(page: 1, perPage: 20, completionHandler: {
-            surveys in DispatchQueue.main.async {
-                self.surveys = surveys as! [Survey]
-                SVProgressHUD.dismiss()
-            }
-        })
+        if reachability.isReachable {
+            SVProgressHUD.show()
+            Client.sharedInstance.getSurveys(page: 1, perPage: 5, completionHandler: {
+                surveys in DispatchQueue.main.async {
+                    self.surveys = surveys as! [Survey]
+                    SVProgressHUD.dismiss()
+                }
+            })
+        } else {
+            let alert = UIAlertController(title: "Uh Oh", message: "You are not connected to the internet", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+                
+            })
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func onRefreshButton(_ sender: Any) {
