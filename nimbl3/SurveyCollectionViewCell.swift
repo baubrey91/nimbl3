@@ -14,10 +14,11 @@ class SurveyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var backgroundImage: CustomImageView!
     
+    //MVVM pattern of setting labels in ViewModel with observer
     var survey: Survey? {
         didSet {
-            self.titleLabel.text = survey?.title
-            self.descriptionLabel.text = survey?.description
+            self.titleLabel.text = survey?.title ?? "error"
+            self.descriptionLabel.text = survey?.description ?? "error"
             if let imgURLString = survey?.imageURL {
                 backgroundImage.loadImage(urlString: imgURLString)
             }

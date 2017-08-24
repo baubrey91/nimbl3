@@ -14,6 +14,7 @@ class Survey {
     var description: String?
     var imageURL: String?
     
+    // normally I would user "Unbox" framework but I didn't think it would be useful for such a small object
     init(dictionary: NSDictionary) {
         title = dictionary["title"] as? String
         description = dictionary["description"] as? String

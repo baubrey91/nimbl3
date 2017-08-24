@@ -93,12 +93,12 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		CA8994561F4BB15D0022D573 /* Store */ = {
+		CA8994561F4BB15D0022D573 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				CA8994571F4BB16F0022D573 /* Client.swift */,
 			);
-			name = Store;
+			name = API;
 			sourceTree = "<group>";
 		};
 		CAA6BC4D1F4B4E8600696EBB = {
@@ -125,7 +125,7 @@
 				CA8994531F4BA9DE0022D573 /* Model */,
 				CA8994551F4BA9FB0022D573 /* View */,
 				CA8994541F4BA9E40022D573 /* Controller */,
-				CA8994561F4BB15D0022D573 /* Store */,
+				CA8994561F4BB15D0022D573 /* API */,
 				CAA6BC591F4B4E8600696EBB /* AppDelegate.swift */,
 				CAA6BC5D1F4B4E8600696EBB /* Main.storyboard */,
 				CAA6BC601F4B4E8600696EBB /* Assets.xcassets */,

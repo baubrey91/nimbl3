@@ -13,16 +13,13 @@ import AFNetworking
 
 class CustomImageView: UIImageView {
     
-    var lowImage: String?
-    var highImage: String?
+    //AFNetowrking passes in an image string. Asychronosly loads image and cahces it.
+    //Once the low quality image is set and the completion handler downloads and sets the high quality image.
     
     func loadImage(urlString: String) {
         image = nil
         
-        guard urlString != "" else { return }
-        
-        lowImage = urlString
-        highImage = urlString+"l"
+        guard canOpenURL(string: urlString) else { return }
         
         let smallImageRequest = URLRequest(url: URL(string: urlString)!)
         let largeImageRequest = URLRequest(url: URL(string: urlString+"l")!)
@@ -31,8 +28,9 @@ class CustomImageView: UIImageView {
             smallImageRequest,
             placeholderImage: nil,
             success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
+                self.alpha = 0.0
                 self.image = smallImage
-                UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
                     self.alpha = 1.0
                 }, completion: { (sucess) -> Void in
                 
@@ -49,6 +47,17 @@ class CustomImageView: UIImageView {
         },
             failure: { (request, response, error) -> Void in
         })
+    }
+    
+    //helper function to make sure the url is valid
+    fileprivate func canOpenURL(string: String?) -> Bool {
+        guard let urlString = string else {return false}
+        guard let url = NSURL(string: urlString) else {return false}
+        if !UIApplication.shared.canOpenURL(url as URL) {return false}
+        
+        let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
+        return predicate.evaluate(with: string)
     }
 }
 

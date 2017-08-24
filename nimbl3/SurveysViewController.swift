@@ -18,9 +18,11 @@ class SurveysViewController: UIViewController {
         }
     }
     
+    //IBoutlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    //MARK:- ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
