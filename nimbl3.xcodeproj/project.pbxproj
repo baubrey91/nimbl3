@@ -81,8 +81,8 @@
 		CA8994541F4BA9E40022D573 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CA32F65A1F4C9388009088EC /* SurveyViewController.swift */,
 				CAA6BC5B1F4B4E8600696EBB /* SurveysViewController.swift */,
+				CA32F65A1F4C9388009088EC /* SurveyViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

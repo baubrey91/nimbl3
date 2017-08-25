@@ -6,7 +6,7 @@ target 'nimbl3' do
   use_frameworks!
 
   # Pods for nimbl3
-    pod 'AFNetworking', '~> 3.0'
+    pod 'AFNetworking'
     pod 'SVProgressHUD'
     pod 'ReachabilitySwift', '~> 3'
 

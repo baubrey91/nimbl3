@@ -15,7 +15,7 @@ class SurveysViewController: UIViewController {
     //MARK:- Variables
     let reachability = Reachability()!
     var page = 1
-    var perPage = 10
+    var perPage = 20
     
     var surveys = [Survey]() {
         didSet {
@@ -45,11 +45,11 @@ class SurveysViewController: UIViewController {
     func getSurveys() {
         if reachability.isReachable {
             SVProgressHUD.show()
-            Client.sharedInstance.getSurveys(page: nil,
-                                             perPage: nil,
+            Client.sharedInstance.getSurveys(page: page,
+                                             perPage: perPage,
                                              completionHandler: {
                 surveys in DispatchQueue.main.async {
-                    self.surveys = surveys as! [Survey]
+                    self.surveys = surveys
                     SVProgressHUD.dismiss()
                 }
             })
