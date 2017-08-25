@@ -12,7 +12,10 @@ import ReachabilitySwift
 
 class SurveysViewController: UIViewController {
     
+    //MARK:- Variables
     let reachability = Reachability()!
+    var page = 1
+    var perPage = 10
     
     var surveys = [Survey]() {
         didSet {
@@ -34,10 +37,11 @@ class SurveysViewController: UIViewController {
         getSurveys()
     }
     
+    //Check if network it reachable before trying to call service
     func getSurveys() {
         if reachability.isReachable {
             SVProgressHUD.show()
-            Client.sharedInstance.getSurveys(page: 1, perPage: 5, completionHandler: {
+            Client.sharedInstance.getSurveys(page: 1, perPage: 10, completionHandler: {
                 surveys in DispatchQueue.main.async {
                     self.surveys = surveys as! [Survey]
                     SVProgressHUD.dismiss()
@@ -59,7 +63,6 @@ class SurveysViewController: UIViewController {
 }
 
 //MARK:- Collection View
-
 extension SurveysViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -83,6 +86,7 @@ extension SurveysViewController: UICollectionViewDelegate, UICollectionViewDataS
         updatePageControl()
     }
     
+    //helper function to give custom look to page indicator
     private func updatePageControl() {
         for (index, dot) in pageControl.subviews.enumerated() {
             if index == pageControl.currentPage {
