@@ -48,7 +48,7 @@ class CustomImageView: UIImageView {
         })
     }
     
-    //helper function to make sure the url is valid
+    //Helper function to make sure the url is valid
     fileprivate func canOpenURL(string: String?) -> Bool {
         guard let urlString = string else {return false}
         guard let url = NSURL(string: urlString) else {return false}

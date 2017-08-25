@@ -32,28 +32,41 @@ class SurveysViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(getSurveys), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(getSurveys),
+                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               object: nil)
         pageControl.transform = pageControl.transform.rotated(by: .pi/2)
         getSurveys()
     }
     
+    //MARK:- Functions
     //Check if network it reachable before trying to call service
     func getSurveys() {
         if reachability.isReachable {
             SVProgressHUD.show()
-            Client.sharedInstance.getSurveys(page: 1, perPage: 10, completionHandler: {
+            Client.sharedInstance.getSurveys(page: nil,
+                                             perPage: nil,
+                                             completionHandler: {
                 surveys in DispatchQueue.main.async {
                     self.surveys = surveys as! [Survey]
                     SVProgressHUD.dismiss()
                 }
             })
         } else {
-            let alert = UIAlertController(title: "Uh Oh", message: "You are not connected to the internet", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+            let alert = UIAlertController(title: "Uh Oh",
+                                          message: "You are not connected to the internet",
+                                          preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: { (alert) in
                 
             })
             alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+            self.present(alert,
+                         animated: true,
+                         completion: nil)
         }
     }
     
@@ -65,7 +78,9 @@ class SurveysViewController: UIViewController {
 //MARK:- Collection View
 extension SurveysViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.view.frame.width
         let height = self.view.frame.height
         return CGSize(width: width, height: height)
@@ -75,13 +90,17 @@ extension SurveysViewController: UICollectionViewDelegate, UICollectionViewDataS
         return surveys.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "SurveyCollectionViewCell", for: indexPath) as! SurveyCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "SurveyCollectionViewCell",
+                                                           for: indexPath) as! SurveyCollectionViewCell
         cell.survey = surveys[indexPath.row]
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
         self.pageControl.currentPage = indexPath.row
         updatePageControl()
     }

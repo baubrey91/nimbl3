@@ -12,34 +12,29 @@ import AFNetworking
 class Client {
 
     let access_token = "d9584af77d8c0d6622e2b3c554ed520b2ae64ba0721e52daa12d6eaa5e5cdd93"
-    //"e9d89f267d0bdd7136a96c490cdf4df0976c14626f6660d3470a1cdd66724b6e"
-
+    //access token is hard coded. You would want to use User.currentUser.token
+    
+    //as the project grows you would want to put these in a static file of strings
     let baseURL = "https://nimbl3-survey-api.herokuapp.com/"
     let surveyURL = "surveys.json?"
+    let tokenURL = "oauth/token?"
     
     static let sharedInstance = Client()
     
-    func getSurveys(completionHandler: @escaping ((_ products: AnyObject) -> Void)) {
+    //function for getting either standard 5 surverys or put parameters in for custom output
+    func getSurveys(page: Int?, perPage: Int?, completionHandler: @escaping ((_ products: AnyObject) -> Void)) {
+        
+        var parameters: [String: AnyObject] = ["access_token": (access_token as AnyObject)]
+        
+        if let _ = page, let _ = perPage {
+            parameters["page"] = page as AnyObject
+            parameters["per_page"] = perPage as AnyObject
+        }
         
         let manager = AFHTTPSessionManager()
         let urlString = "\(baseURL)\(surveyURL)"
         manager.get(urlString,
-                    parameters: ["access_token": access_token],
-                    progress: nil,
-                    success: { (_, json) -> Void in
-                        completionHandler(Survey.surveys(array: json as! [NSDictionary]) as AnyObject)
-            },
-                    failure: { (_, error) -> Void in
-                        print(error)
-            })
-    }
-    
-    func getSurveys(page: Int, perPage: Int, completionHandler: @escaping ((_ products: AnyObject) -> Void)) {
-        
-        let manager = AFHTTPSessionManager()
-        let urlString = "\(baseURL)\(surveyURL)"
-        manager.get(urlString,
-                    parameters: ["page": 1, "per_page": 10, "access_token": access_token],
+                    parameters: parameters,
                     progress: nil,
                     success: { (_, json) -> Void in
                         completionHandler(Survey.surveys(array: json as! [NSDictionary]) as AnyObject)
@@ -48,27 +43,25 @@ class Client {
                         print(error)
         })
     }
-
-
     
-    /*func getSurveys(page: Int, perPage: Int, completionHandler: @escaping ((_ products: AnyObject) -> Void)) {
+    //function for getting new token
+    func getToken(username: String, password: String, completionHandler: @escaping ((_ token: String) -> Void)) {
         
-        var request = URLRequest(url: URL(string: "\(baseURL)\(surveyURL)")!)
-
-        //var request = URLRequest(url: URL(string: "\(baseURL)surveys.json?page=\(page)&per_page=\(perPage)")!)
-        request.httpMethod = "GET"
-        request.setValue("Bearer \(access_token)", forHTTPHeaderField: "Authorization")
+        let parameters: [String: String] = ["username": "carlos@nimbl3.com",
+                                               "password": "antikera",
+                                               "grant_type": "password"]
         
-        let session = URLSession.shared
-        session.dataTask(with: request) { data, response, error in
-            do {
-                let JSON = try JSONSerialization.jsonObject(with: data!, options: []) as! [NSDictionary]
-                completionHandler(Survey.surveys(array: JSON) as AnyObject)
-            }
-            catch {
-                print("json error: \(error)")
-            }
-        }.resume()
-    }*/
-
+        let manager = AFHTTPSessionManager()
+        let urlString = "\(baseURL)\(tokenURL)"
+        manager.post(urlString,
+                    parameters: parameters,
+                    progress: nil,
+                    success: { (_, json) -> Void in
+                        let payload = json as! NSDictionary
+                        completionHandler(payload["access_token"] as! String)
+        },
+                    failure: { (_, error) -> Void in
+                        print(error)
+        })
+    }
 }

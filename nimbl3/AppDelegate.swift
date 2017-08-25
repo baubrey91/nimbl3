@@ -14,7 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //This is boiler plate code
+        // You would want to send the user to a new page to log in if there was no current user or token has expired
+        /*if User.currentUser == nil {
+            Client.sharedInstance.getToken(username: "carlos@nimbl3.com", password: "antikera", completionHandler: {
+                token in DispatchQueue.main.async {
+                    User.currentUser = User(token: token, userName: "carlos@nimbl3.com")
+                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                    storyBoard.instantiateInitialViewController()
+                }
+            })
+        }*/
         return true
     }
 
@@ -33,9 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        
-        NotificationCenter.default.post(name: NSNotification.Name.UIApplicationDidBecomeActive, object:nil)
+    
         //call API to refresh data
+        NotificationCenter.default.post(name: NSNotification.Name.UIApplicationDidBecomeActive, object:nil)
+        
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 

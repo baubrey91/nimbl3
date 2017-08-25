@@ -14,7 +14,7 @@ class SurveyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var backgroundImage: CustomImageView!
     
-    //MVVM pattern of setting labels in ViewModel with observer
+    //MVVM pattern of setting labels in ViewModel with observer to set values
     var survey: Survey? {
         didSet {
             self.titleLabel.text = survey?.title ?? "error"
