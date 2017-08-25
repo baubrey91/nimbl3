@@ -13,7 +13,7 @@ import AFNetworking
 class CustomImageView: UIImageView {
     
     //AFNetowrking passes in an image string. Asychronosly loads image and cahces it.
-    //Once the low quality image is set and the completion handler downloads and sets the high quality image.
+    //Once the low quality image is set then the completion handler downloads and sets the high quality image.
     
     func loadImage(urlString: String) {
         image = nil
