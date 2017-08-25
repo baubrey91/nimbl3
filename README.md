@@ -2,25 +2,25 @@
 
 ## User Stories
 
-The following **required** functionality is completed:
+The following functionality is completed:
 
-- [x] Images
+- [x] Images - all handled through AFNetworking
    - [x] Loaded asynchronous
    - [x] Put in cache
    - [x] Low quality is loaded first then callback starts download for high quality
-
-
-## Video Walkthrough
-
-Here's a walkthrough of implemented user stories:
-
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+- [x] Data is repulled once app is re-opened with observer in appDelegate
+- [x] Suvrvey API call can take inputs for page and page number
+- [x] Title and description unwrap to next line if too large
+- [x] Function written to get new token if needed
+- [x] Survey is presented Modally (I think it looks nicer modally which is why I added another NavContorller)
+- [x] Reachability framework checks if you are connected to the internet and sends warning if not
+- [x] Simple icon and splash screen
 
 ## Notes
 
+Overall I tried to keep the project as simple and easy to read as possible, but if you would like me to implement something more difficult I would be up for the challenge. UI is done in storyBoard. MVVM design pattern. I followed these practices for writing swift https://github.com/github/swift-style-guide.
 
-credit to icons8, afnetworking, svprogresshud
+Credit to icons8, AFNetworking, SVProgresshud, Reachability,
 
 ## License
 
