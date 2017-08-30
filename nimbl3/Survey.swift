@@ -15,14 +15,14 @@ class Survey {
     var imageURL: String?
     
     // normally I would user "Unbox" framework but I didn't think it would be useful for such a small object
-    init(dictionary: NSDictionary) {
+    init(dictionary: payload) {
         title = dictionary["title"] as? String
         description = dictionary["description"] as? String
         imageURL = dictionary["cover_image_url"] as? String
     }
     
     //create array of products by passing in json array
-    class func surveys(array: [NSDictionary]) -> [Survey] {
+    class func surveys(array: [payload]) -> [Survey] {
         var surveys = [Survey]()
         for dictionary in array {
             let survey = Survey(dictionary: dictionary)

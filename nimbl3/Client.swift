@@ -24,11 +24,11 @@ class Client {
     //function for getting either standard 5 surverys or put parameters in for custom output
     func getSurveys(page: Int?, perPage: Int?, completionHandler: @escaping ((_ surveys: [Survey]) -> Void)) {
         
-        var parameters: [String: AnyObject] = ["access_token": (access_token as AnyObject)]
+        var parameters: payload = ["access_token": (access_token as Any)]
         
         if let _ = page, let _ = perPage {
-            parameters["page"] = page as AnyObject
-            parameters["per_page"] = perPage as AnyObject
+            parameters["page"] = page as Any
+            parameters["per_page"] = perPage as Any
         }
         
         let manager = AFHTTPSessionManager()
@@ -37,7 +37,7 @@ class Client {
                     parameters: parameters,
                     progress: nil,
                     success: { (_, json) -> Void in
-                        completionHandler(Survey.surveys(array: json as! [NSDictionary]))
+                        completionHandler(Survey.surveys(array: json as! [payload]))
         },
                     failure: { (_, error) -> Void in
                         print(error)
@@ -57,7 +57,7 @@ class Client {
                     parameters: parameters,
                     progress: nil,
                     success: { (_, json) -> Void in
-                        let payload = json as! NSDictionary
+                        let payload = json as! payload
                         completionHandler(payload["access_token"] as! String)
         },
                     failure: { (_, error) -> Void in
